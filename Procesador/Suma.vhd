@@ -12,6 +12,7 @@ end Suma;
 
 architecture Behavioral of Suma is
 --otra cosa
+--gfgff
 begin
 
 process(Op1,Op2)
