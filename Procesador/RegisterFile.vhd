@@ -3,8 +3,8 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_arith.ALL;
 use IEEE.STD_LOGIC_unsigned.ALL;
--- algo
---Angelica lina 
+
+
 
 entity RegisterFile is
     Port ( rs1 : in  STD_LOGIC_VECTOR (4 downto 0);
@@ -18,7 +18,22 @@ end RegisterFile;
 
 architecture Behavioral of RegisterFile is
 
-type ram is array(31 downto 0) of std_logic_vector(31 downto 0);
+type rom_type is array(31 downto 0) of std_logic_vector(31 downto 0);
+
+impure function InitRomFromFile (RomFileName : in string) return rom_type is
+		FILE RomFile : text open read_mode is RomFileName;
+		variable RomFileLine : line;
+		variable temp_bv : bit_vector(31 downto 0);
+		variable temp_mem : rom_type;
+		begin
+			for I in rom_type'range loop
+				readline (RomFile, RomFileLine);
+				read(RomFileLine, temp_bv);
+				temp_mem(i) := to_stdlogicvector(temp_bv);
+			end loop;
+		return temp_mem;
+	end function;
+
 signal registers : ram := (others => "00000000000000000000000000000000");
 
 begin
