@@ -11,7 +11,8 @@ entity Suma is
 end Suma;
 
 architecture Behavioral of Suma is
---asd
+--otra cosa
+--gfgff
 begin
 
 process(Op1,Op2)
